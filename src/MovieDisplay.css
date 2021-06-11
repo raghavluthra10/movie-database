@@ -1,0 +1,31 @@
+.movieDisplayContainer {
+    padding: 50px 100px;
+}
+
+.movieDisplay_moviePhoto, .movieDisplayFillerPost {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 20px;
+    margin-right: 100px;
+
+}
+
+
+.movieDisplay_movieDetails {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.movieSearch_movieTitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.movieDisplayAddButton {
+    display: block;
+
+}
+
+.movieDisplayFirstAddBtn {
+    margin-bottom: 20px;
+}

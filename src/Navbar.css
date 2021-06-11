@@ -1,0 +1,20 @@
+.navbarContainer {
+    text-decoration: none;
+    border-radius: 0;
+    background-color: #003542;
+    height: 60px;
+    padding: 18px 50px 0px 50px;
+    width: 100%;
+    font-size: 18px;
+    }
+
+.navbar_navItems {
+    display: inline-block;
+    float: right;
+}
+
+.navbar_listItems  {
+    display: inline;
+    margin-left: 50px;
+    width: 100%;
+}

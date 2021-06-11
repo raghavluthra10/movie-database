@@ -1,0 +1,32 @@
+.searchMovieContainer {
+    padding: 50px 100px;
+}
+
+.searchMovieInputSearch {
+    width: 30%;
+    height: 40px;
+    font-size: 18px;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid;
+    
+}
+
+.searchMovieClearButton {
+    height: 40px;
+    margin-left: 10px;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid;
+    width: 80px;
+    font-size: 18px;
+    background-color: white;
+}
+
+.searchMovieClearButton:hover {
+    background-color: #0481a0;
+    border-radius: 5px;
+    transition: all 0.2s ease-out;
+    color: white;
+    border-color: black;
+}

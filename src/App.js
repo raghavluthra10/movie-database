@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import SearchMovie from './SearchMovie';
+import Navbar from './Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Watchlist from './pages/Watchlist';
+import Watched from './pages/Watched'
+import MovieState from './context/movieDataBase/MovieState';
+
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navbar  />
+
+        <Switch>
+          <Route exact path='/'>
+            <SearchMovie  />
+          </Route>
+          
+          <Route exact path='/watchlist'>
+            <Watchlist   />
+          </Route>
+
+          <Route exact path='/watched'>
+            <Watched  />
+          </Route>
+
+        </Switch>
+
+      </Router>
+
     </div>
+
   );
 }
 
