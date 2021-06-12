@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import MovieDisplay from './MovieDisplay';
 import './SearchMovie.css';
 import Button from '@material-ui/core/Button';
@@ -50,7 +50,6 @@ function SearchMovie() {
                 <Button variant="contained" color="primary" type='submit'
                 onClick={clearAll} 
                 className='searchMovieClearButton' 
-                type='button' 
                 > 
                 Clear
                 </Button>

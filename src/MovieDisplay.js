@@ -2,7 +2,7 @@ import React from 'react';
 import './MovieDisplay.css';
 import Button from '@material-ui/core/Button';
 import { useStateValue } from './context_watchlist/StateProvider';
-
+import db from './firebase';
 
 
 const MovieDisplay = ({ movie }) => {
@@ -12,6 +12,14 @@ const MovieDisplay = ({ movie }) => {
     
     const addToWatchList = (e) => {
         e.preventDefault();
+
+        db.collection('watchlist').add({
+            title: movie.title,
+            release: movie.release_date,
+            rating: movie.vote_average,
+            image: movie.poster_path,
+        })
+
         dispatch({
             type: 'ADD_TO_WATCHLIST',
             watchlistMovie: movie

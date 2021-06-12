@@ -1,15 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import { auth } from '../firebase';
+import { useHistory } from 'react-router-dom';
 
 const Welcome = () => {
 
+    const history = useHistory();
+
+    // login state
+    const [ emailLogin, setEmailLogin ] = useState('');
+    const [ passwordLogin, setPasswordLogin ] = useState('');
+
+
+    // signup state
+    const [ fullName, setFullName ] = useState('');
+    const [ emailSignUp, setEmailSignUp ] = useState('');
+    const [ passwordSignUp, setPasswordSignUp ] = useState('');
+    const [ confirmPasswordSignUp, setConfirmPasswordSignUp ] = useState('');
+
     const login = (e) => {
         e.preventDefault();
+
+        auth.signInWithEmailAndPassword(emailLogin, passwordLogin) 
+        .then(() => {
+            history.push('/welcome')
+        }).catch((e) => alert(e.message))
     };
 
     const signUp = (e) => {
         e.preventDefault();
+
+        if(fullName === '' || emailSignUp === '' || passwordSignUp === '' || confirmPasswordSignUp === '') {
+            alert('please fill in the details for signing up')
+        } else {
+            if(passwordSignUp === confirmPasswordSignUp) {
+                auth.createUserWithEmailAndPassword(emailSignUp, passwordSignUp)
+                .then((auth) => {
+                    history.push('/welcome');
+                }).catch(e => alert(e.message))
+            } else {
+                alert('Your password needs to match your confirm password')
+            }
+        }
     };
 
     return (
@@ -17,12 +50,12 @@ const Welcome = () => {
             <FormLogin>
                 <div>
                     <label> E-mail: </label>
-                    <input />
+                    <input type='text' value={emailLogin} onChange={(e) => setEmailLogin(e.target.value)}  />
                 </div>
                 
                 <div>
                     <label> Password: </label>
-                    <input  />
+                    <input type='password' value={passwordLogin} onChange={(e) => setPasswordLogin(e.target.value)} />
                 </div>
 
                 <Button variant="contained" color="primary" type='submit' onClick={login}>
@@ -40,22 +73,22 @@ const Welcome = () => {
             <FormSignUp>
                 <div>
                     <label> Full name: </label>
-                    <input type='text' />
+                    <input type='text' value={fullName} onChange={(e) => setFullName(e.target.value)} />
                 </div>
 
                 <div>
                     <label> E-mail: </label>
-                    <input type='text' />
+                    <input type='text' value={emailSignUp} onChange={(e) => setEmailSignUp(e.target.value)} />
                 </div>
 
                 <div>
                     <label> Password: </label>
-                    <input type='password' />
+                    <input type='password' value={passwordSignUp} onChange={(e) => setPasswordSignUp(e.target.value)} />
                 </div>
 
                 <div>
                     <label> Confirm password: </label>
-                    <input type='password' />
+                    <input type='password'  value={confirmPasswordSignUp} onChange={(e) => setConfirmPasswordSignUp(e.target.value)} />
                 </div>
 
                 <Button variant="contained" color="primary" type='submit' onClick={signUp}>
@@ -102,6 +135,7 @@ const FormLogin = styled.form`
         input {
             height: 40px;
             border-radius: 5px;
+            color: black;
         }
 
         label {

@@ -16,11 +16,11 @@ function App() {
         
 
         <Switch>
-          <Router exact path='/welcome'>
-            <Welcome  />
-          </Router>
-
           <Route exact path='/'>
+            <Welcome  />
+          </Route>
+
+          <Route exact path='/welcome'>
             <Navbar  />
             <SearchMovie  />
           </Route>
