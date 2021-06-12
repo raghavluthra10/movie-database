@@ -23,7 +23,6 @@ function SearchMovie() {
                     setResults([])
                 }    
             })
-            console.log(results)
     }
 
 

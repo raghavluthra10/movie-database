@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Watchlist from './pages/Watchlist';
 import Watched from './pages/Watched'
-import MovieState from './context/movieDataBase/MovieState';
+// import MovieState from './context_watchlist/movieDataBase/MovieState';
 import Welcome from './pages/Welcome';
 
 
@@ -47,3 +47,4 @@ function App() {
 export default App;
 
 // add a filter by genre function as well
+// save search result in session storage so it does not looses its searched result

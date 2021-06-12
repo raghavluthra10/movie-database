@@ -14,7 +14,7 @@ function Navbar() {
                     </li>
 
                     <li className='navbar_listItems'>
-                        <Link to='/watched'>Watched</Link>
+                        <Link to='/watched'>Log Out</Link>
                     </li>      
             </PageNavs>
             

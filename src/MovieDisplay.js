@@ -1,21 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './MovieDisplay.css';
 import Button from '@material-ui/core/Button';
-import MovieState from './context/movieDataBase/MovieState';
-import Watchlist from './pages/Watchlist'
-import MovieContext from './context/movieDataBase/movieContext'
+import { useStateValue } from './context_watchlist/StateProvider';
 
 
 
 const MovieDisplay = ({ movie }) => {
 
+    const [ state, dispatch ] = useStateValue();
+
+    
+    const addToWatchList = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: 'ADD_TO_WATCHLIST',
+            watchlistMovie: movie
+        })
+    };
+
     const addToWatched = (e) => {
         e.preventDefault(); 
     };
 
-    const addToWatchList = (e) => {
-        e.preventDefault();
-    };
 
     return (
         <div className='movieDisplay'>
