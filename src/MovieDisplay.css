@@ -1,31 +1,31 @@
-.movieDisplayContainer {
-    padding: 50px 100px;
+.movieDisplay {
+    display: flex;
+    /* background-color: lightgreen; */
+    justify-content: space-between;
+    margin-top: 50px;
 }
 
-.movieDisplay_moviePhoto, .movieDisplayFillerPost {
-    display: inline-block;
-    vertical-align: top;
-    border-radius: 20px;
-    margin-right: 100px;
-
+.movieDisplay__img{
+    flex: 0.1;
+    width: 300px;
+    border-radius: 5px;
 }
 
-
-.movieDisplay_movieDetails {
-    display: inline-block;
-    vertical-align: top;
+.movieDisplay_movieDetails{
+    flex: 0.83;
+    padding: 30px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 
-.movieSearch_movieTitle {
-    font-size: 20px;
-    font-weight: bold;
+.movieDisplay__AddToWatchlist, .movieDisplay__watched {
+    width: 200px;
+    font-size: 12px !important;
+    height: 35px !important;
 }
 
-.movieDisplayAddButton {
-    display: block;
-
-}
-
-.movieDisplayFirstAddBtn {
-    margin-bottom: 20px;
+.movieDisplay_movieTitle, .movieDisplay__release, .movieDisplay__ratings {
+    font-size: 16px;
+    font-weight: 600;
 }

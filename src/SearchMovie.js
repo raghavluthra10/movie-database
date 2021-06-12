@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import MovieDisplay from './MovieDisplay';
 import './SearchMovie.css';
+import Button from '@material-ui/core/Button';
 // import MovieState from './context/movieDataBase/MovieState';
 // import MovieContext from './context/movieDataBase/movieContext';
 
@@ -13,7 +14,7 @@ function SearchMovie() {
         e.preventDefault();
         setSearch(e.target.value)
 
-        await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fdad333b13e02522618810cda6514e3&language=en-US&page=1&include_adult=false&query=${e.target.value}`)
+        await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fdad333b13e02522618810cda6514e3&language=en-US&page=1&include_adult=false&query=${search}`)
             .then(res => res.json())
             .then((data) => {
                 if(!data.errors){
@@ -27,6 +28,8 @@ function SearchMovie() {
 
 
     const clearAll = (e) => {
+        e.preventDefault();
+
         setResults([])
         setSearch('')
     }
@@ -34,9 +37,9 @@ function SearchMovie() {
 
   
         return (
-        <>
-        <div className='searchMovieContainer'>
-            <form>
+        <div className='searchMove'>
+            
+            <form  className='searchMovieContainer'>
                 <input 
                 className='searchMovieInputSearch' 
                 type='text'  
@@ -45,31 +48,30 @@ function SearchMovie() {
                 onChange={searchForTheMovie}
                 />
 
-                <button 
+                <Button variant="contained" color="primary" type='submit'
                 onClick={clearAll} 
                 className='searchMovieClearButton' 
                 type='button' 
                 > 
                 Clear
-                </button>
+                </Button>
             </form>
-        </div>
+            
 
-        <div>
+            <div>
 
-            {results.length > 0 && (
-                <>
-                    {results.map((movie) => (
-                        <ul key={movie.id}>
-                        <MovieDisplay  
-                        movie={movie}
-                        />
-                        </ul>
-                    ))}
-                </>
-            )}
+                {results.length > 0 && (
+                    <>
+                        {results.filter((poster) => poster.poster_path !== null).map((movie) => (
+                            <MovieDisplay  
+                            key={movie.id}
+                            movie={movie}
+                            />
+                        ))}
+                    </>
+                )}
+            </div>
         </div>
-        </>
         )
     }
 

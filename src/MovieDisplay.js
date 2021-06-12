@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './MovieDisplay.css';
+import Button from '@material-ui/core/Button';
 import MovieState from './context/movieDataBase/MovieState';
 import Watchlist from './pages/Watchlist'
 import MovieContext from './context/movieDataBase/movieContext'
@@ -8,36 +9,41 @@ import MovieContext from './context/movieDataBase/movieContext'
 
 const MovieDisplay = ({ movie }) => {
 
+    const addToWatched = (e) => {
+        e.preventDefault(); 
+    };
+
+    const addToWatchList = (e) => {
+        e.preventDefault();
+    };
+
     return (
-        <div className='movieDisplayContainer'>
-            <div className='movieDisplay_moviePhoto'>
-            {movie.poster_path ? (
-            <div>
-            <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} className='poster_path' />
-            </div>
-            ) : (
-                <div className='movieDisplayFillerPost'></div>
-            )}
-            </div>
+        <div className='movieDisplay'>
+            
+            
+            <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} className='movieDisplay__img' />
+           
+            
             
             <div className='movieDisplay_movieDetails'>
                
-                <div className='movieSearch_movieTitle'> Movie: {movie.title} </div>
-                Release: {movie.release_date}
-                <br></br>
+                <div className='movieDisplay_movieTitle'> Movie: {movie.title} </div>
 
-                Ratings: {movie.vote_average}
+                <div className='movieDisplay__release'> Release: {movie.release_date} </div>
+                
+                <div className='movieDisplay__ratings'> Ratings: {movie.vote_average} </div>
 
-                <br></br>
-                <br></br>
+                <br />
+                <br />
+                <br />
             
-                <button type='button' className='movieDisplayAddButton movieDisplayFirstAddBtn'>
+                <Button variant="contained" color="primary" type='submit' onClick={addToWatchList} className='movieDisplay__AddToWatchlist'>
                     ADD TO WATCHLIST
-                </button>
+                </Button>
 
-                <button type='button' className='movieDisplayAddButton'>
+                <Button variant="contained" color="primary" type='submit' onClick={addToWatched} className='movieDisplay__watched'>
                     WATCHED
-                </button>
+                </Button>
             </div>
         </div>
     )

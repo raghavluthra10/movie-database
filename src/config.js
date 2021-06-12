@@ -1,6 +1,3 @@
-
-
-
 const API_URL = 'https://api.themoviedb.org/3/';
 
 const API_KEY = '9fdad333b13e02522618810cda6514e3';

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Watchlist from './pages/Watchlist';
 import Watched from './pages/Watched'
 import MovieState from './context/movieDataBase/MovieState';
-
+import Welcome from './pages/Welcome';
 
 
 
@@ -13,18 +13,25 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar  />
+        
 
         <Switch>
+          <Router exact path='/welcome'>
+            <Welcome  />
+          </Router>
+
           <Route exact path='/'>
+            <Navbar  />
             <SearchMovie  />
           </Route>
           
           <Route exact path='/watchlist'>
+            <Navbar  />
             <Watchlist   />
           </Route>
 
           <Route exact path='/watched'>
+            <Navbar  />
             <Watched  />
           </Route>
 
@@ -38,3 +45,5 @@ function App() {
 }
 
 export default App;
+
+// add a filter by genre function as well
