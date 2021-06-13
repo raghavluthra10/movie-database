@@ -1,7 +1,7 @@
 .searchMove {
     display: flex;
     flex-direction: column;
-    padding: 100px 150px;
+    padding: 50px 150px;
 }
 
 .searchMovieContainer {
@@ -23,6 +23,11 @@
     flex: 0.1;
     margin-left: 10px !important;
     font-size: 14px !important;
+}
+
+.searchMovie__displayName {
+    height: 50px;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 740px) {

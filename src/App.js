@@ -1,25 +1,25 @@
 import SearchMovie from './SearchMovie';
 import Navbar from './Navbar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Watchlist from './pages/Watchlist';
-import Watched from './pages/Watched'
-// import MovieState from './context_watchlist/movieDataBase/MovieState';
 import Welcome from './pages/Welcome';
 
 
 
-
 function App() {
+  
+ 
+
   return (
     <div className="App">
       <Router>
         
-
         <Switch>
           <Route exact path='/'>
+            <Navbar />
             <Welcome  />
           </Route>
-
+   
           <Route exact path='/welcome'>
             <Navbar  />
             <SearchMovie  />
@@ -28,11 +28,6 @@ function App() {
           <Route exact path='/watchlist'>
             <Navbar  />
             <Watchlist   />
-          </Route>
-
-          <Route exact path='/watched'>
-            <Navbar  />
-            <Watched  />
           </Route>
 
         </Switch>
@@ -46,5 +41,7 @@ function App() {
 
 export default App;
 
-// add a filter by genre function as well
-// save search result in session storage so it does not looses its searched result
+// make privateRoute if user is not signed in
+
+
+

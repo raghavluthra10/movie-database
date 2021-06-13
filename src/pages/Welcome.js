@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { auth } from '../firebase';
+import db from '../firebase';
 import { useHistory } from 'react-router-dom';
 
 const Welcome = () => {
@@ -35,7 +36,12 @@ const Welcome = () => {
             alert('please fill in the details for signing up')
         } else {
             if(passwordSignUp === confirmPasswordSignUp) {
+
                 auth.createUserWithEmailAndPassword(emailSignUp, passwordSignUp)
+                .then((auth) => db.collection('users').doc(auth.user.uid).collection('userDetails').add({
+                    displayName: fullName,
+                    email: emailSignUp,
+                }))
                 .then((auth) => {
                     history.push('/welcome');
                 }).catch(e => alert(e.message))
@@ -106,6 +112,8 @@ export default Welcome
 const Container = styled.div`
     background-image: url('https://cdn.hipwallpaper.com/i/98/21/dUyCkp.jpg');
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
     display: flex;
     align-items: flex-end;

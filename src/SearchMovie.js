@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import MovieDisplay from './MovieDisplay';
 import './SearchMovie.css';
 import Button from '@material-ui/core/Button';
-// import MovieState from './context/movieDataBase/MovieState';
-// import MovieContext from './context/movieDataBase/movieContext';
+import  db, { auth } from './firebase';
 
 function SearchMovie() {
+
+    
+    const userId = auth.X;
+
+    const [ userDetails, setUserDetails ] = useState([]);
+
+    useEffect( () => {
+        //fetch user details from the database
+        db.collection('users').doc(userId).collection('userDetails').onSnapshot(snapshot => (
+            setUserDetails(snapshot.docs.map(doc => ( doc.data() )))
+        ))
+    }, [userId])
 
     const [search, setSearch] = useState('');
     const [results, setResults] = useState([]);
@@ -33,11 +44,12 @@ function SearchMovie() {
         setSearch('')
     }
 
-
-  
         return (
         <div className='searchMove'>
-            
+            <h1 className='searchMovie__displayName'>
+                {userDetails.length > 0 && userDetails[0].displayName}
+            </h1>
+
             <form  className='searchMovieContainer'>
                 <input 
                 className='searchMovieInputSearch' 
@@ -75,7 +87,3 @@ function SearchMovie() {
 
 
 export default SearchMovie
-
-
-//how to make sure page not restart when navigate to another page reactjs
-//how to make a login page in reactjs backend

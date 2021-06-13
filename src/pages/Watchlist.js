@@ -1,31 +1,36 @@
-import React from 'react';
-import { useStateValue } from '../context_watchlist/StateProvider';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import db, { auth } from '../firebase';
 
 export const Watchlist = () => {
 
-    const [ state, dispatch ] = useStateValue();
-   
+    const userId = auth.X;
+
+    const [ moviesAddedToWatchlist, setMoviesAddedToWatchlist ] = useState([]);
+
+    useEffect(() => {
+        db.collection('users').doc(userId).collection('watchlist').onSnapshot(snapshot => (
+            setMoviesAddedToWatchlist(snapshot.docs.map(doc => ({id: doc.id, detail: doc.data() })))
+        ))
+    }, []);
+
     const removeFromWatchlist = (id) => {
-        dispatch({
-            type: 'REMOVE_FROM_WATCHLIST',
-            id: id,
-        })
+        db.collection('users').doc(userId).collection('watchlist').doc(id).delete();
     };
 
     return (
         <Container> 
-            {state.length > 0 ? 
-                state.map((v)=> (
-                    <MoviesAddedToWatchlist key={v.id}>
-                        <ImageWatchlist src={`https://image.tmdb.org/t/p/w200${v.poster_path}`} alt={v.title} />
+            {moviesAddedToWatchlist.length > 0 ? 
+                moviesAddedToWatchlist.map((v)=> (
+                    <MoviesAddedToWatchlist key={v.detail.title}>
+                        <ImageWatchlist src={`https://image.tmdb.org/t/p/w200${v.detail.poster}`} alt={v.detail.title} />
 
-                        <div > Movie: {v.title} </div>
+                        <div > Movie: {v.detail.title} </div>
 
-                        <div > Release: {v.release_date} </div>
+                        <div > Release: {v.detail.releaseDate} </div>
                         
-                        <div> Ratings: {v.vote_average} </div>
+                        <div> Ratings: {v.detail.ratings} </div>
 
                         <Button variant='outlined' color="primary" onClick={() => removeFromWatchlist(v.id)}>
                             Remove from watchlist
@@ -46,18 +51,37 @@ export const Watchlist = () => {
 
 export default Watchlist
 
+// const screenSize = {
+//     medium: '1420px'
+// }
+
 const Container = styled.div`
-    padding: 50px 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 50px;
-    align-items: center;
-    
+    padding: 50px 5vw;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-items: center;
+    grid-gap: 100px;
+
+    @media screen and (max-width: 1420px){
+        grid-template-columns: auto auto auto;
+    }
+
+    @media screen and (max-width: 1020px){
+        grid-template-columns: auto  auto;
+        padding: 50px 10vw;
+    }
+
+    @media screen and (max-width: 750px){
+        grid-template-columns: auto;
+        padding: 50px 10vw;
+    }
+
 `;
 
 const MoviesAddedToWatchlist = styled.div`
-    width: 250px;
+    align-self: center;
+    max-width: 260px;
+    min-width: 240px;
     height: 420px;
     display: flex;
     flex-direction: column;
@@ -67,6 +91,7 @@ const MoviesAddedToWatchlist = styled.div`
         font-weight: 500;
         font-size: 15px;
     }
+
 `;
 
 const ImageWatchlist = styled.img`

@@ -9,7 +9,8 @@ function Navbar() {
     const history = useHistory();
 
     const  logout = () => {
-        auth.signOut().then(() => {
+        auth.signOut()
+        .then(() => {
             history.push('/')
         }).catch((error) => {
             alert(error.message)
@@ -56,7 +57,7 @@ const  Container = styled.nav`
         color: white;
     }
 
-    @media(max-width: 470px) {
+    @media screen and (max-width: 430px) {
         padding: 0px 20px;
     }
 `;
@@ -65,10 +66,17 @@ const PageNavs = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
+    width: 40vw;
+    max-width: 300px;
 
-    @media(max-width: 800px) {
-        width: 40vw;
+    @media screen and (max-width: 430px){
+        /* width: 200px; */
+        flex: 1;
+        justify-content: flex-end;
+
+        button {
+            margin-left: 10px;
+        }
     }
 `;
 

@@ -1,35 +1,22 @@
 import React from 'react';
 import './MovieDisplay.css';
 import Button from '@material-ui/core/Button';
-import { useStateValue } from './context_watchlist/StateProvider';
-import db from './firebase';
-
+import  db, { auth } from './firebase';
 
 const MovieDisplay = ({ movie }) => {
 
-    const [ state, dispatch ] = useStateValue();
-
+    const userId = auth.X;
     
     const addToWatchList = (e) => {
         e.preventDefault();
 
-        db.collection('watchlist').add({
+        db.collection('users').doc(userId).collection('watchlist').add({
             title: movie.title,
-            release: movie.release_date,
-            rating: movie.vote_average,
-            image: movie.poster_path,
-        })
-
-        dispatch({
-            type: 'ADD_TO_WATCHLIST',
-            watchlistMovie: movie
+            poster: movie.poster_path,
+            releaseDate: movie.release_date,
+            ratings: movie.vote_average,
         })
     };
-
-    const addToWatched = (e) => {
-        e.preventDefault(); 
-    };
-
 
     return (
         <div className='movieDisplay'>
@@ -55,9 +42,6 @@ const MovieDisplay = ({ movie }) => {
                     ADD TO WATCHLIST
                 </Button>
 
-                <Button variant="contained" color="primary" type='submit' onClick={addToWatched} className='movieDisplay__watched'>
-                    WATCHED
-                </Button>
             </div>
         </div>
     )
