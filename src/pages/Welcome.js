@@ -114,11 +114,11 @@ const Container = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
-    /* justify-content: space-between; */
     padding: 50px 50px;
     
     @media(min-width: 1000px) {
