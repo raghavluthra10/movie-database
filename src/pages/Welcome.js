@@ -117,8 +117,8 @@ const BackgoungBlur = styled.div`
     position: absolute;
     background-color: black;
     opacity: 0.5;
-    min-height: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 `;
 
 const Container = styled.div`
@@ -130,8 +130,8 @@ const Container = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* min-height: 100vh; */
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
