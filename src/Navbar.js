@@ -69,6 +69,15 @@ const PageNavs = styled.div`
     width: 40vw;
     max-width: 300px;
 
+    a {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    button {
+        font-size: 12px !important;
+    }
+
     @media screen and (max-width: 430px){
         /* width: 200px; */
         flex: 1;

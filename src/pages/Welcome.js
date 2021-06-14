@@ -10,8 +10,8 @@ const Welcome = () => {
     const history = useHistory();
 
     // login state
-    const [ emailLogin, setEmailLogin ] = useState('');
-    const [ passwordLogin, setPasswordLogin ] = useState('');
+    const [ emailLogin, setEmailLogin ] = useState('arjunjuneja@gmail.com');
+    const [ passwordLogin, setPasswordLogin ] = useState('hahaha');
 
 
     // signup state
@@ -53,55 +53,55 @@ const Welcome = () => {
 
     return (
         <Container >
-            <FormLogin>
-                <div>
-                    <label> E-mail: </label>
-                    <input type='text' value={emailLogin} onChange={(e) => setEmailLogin(e.target.value)}  />
-                </div>
+                <FormLogin>
+                    <div>
+                        <label> E-mail: </label>
+                        <input type='text' value={emailLogin} onChange={(e) => setEmailLogin(e.target.value)}  />
+                    </div>
+                    
+                    <div>
+                        <label> Password: </label>
+                        <input type='password' value={passwordLogin} onChange={(e) => setPasswordLogin(e.target.value)} />
+                    </div>
+
+                    <Button variant="contained" color="primary" type='submit' onClick={login}>
+                        Login
+                    </Button>
+
+                    <SignUpInstruction>
+                        Don't have an account? Consider Signing up.
+                    </SignUpInstruction>
+                    
+                </FormLogin>
+
                 
-                <div>
-                    <label> Password: </label>
-                    <input type='password' value={passwordLogin} onChange={(e) => setPasswordLogin(e.target.value)} />
-                </div>
 
-                <Button variant="contained" color="primary" type='submit' onClick={login}>
-                    Login
-                </Button>
+                <FormSignUp>
+                    <div>
+                        <label> Full name: </label>
+                        <input type='text' value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                    </div>
 
-                <SignUpInstruction>
-                    Don't have an account? Consider Signing up.
-                </SignUpInstruction>
-                
-            </FormLogin>
+                    <div>
+                        <label> E-mail: </label>
+                        <input type='text' value={emailSignUp} onChange={(e) => setEmailSignUp(e.target.value)} />
+                    </div>
 
-            
+                    <div>
+                        <label> Password: </label>
+                        <input type='password' value={passwordSignUp} onChange={(e) => setPasswordSignUp(e.target.value)} />
+                    </div>
 
-            <FormSignUp>
-                <div>
-                    <label> Full name: </label>
-                    <input type='text' value={fullName} onChange={(e) => setFullName(e.target.value)} />
-                </div>
+                    <div>
+                        <label> Confirm password: </label>
+                        <input type='password'  value={confirmPasswordSignUp} onChange={(e) => setConfirmPasswordSignUp(e.target.value)} />
+                    </div>
 
-                <div>
-                    <label> E-mail: </label>
-                    <input type='text' value={emailSignUp} onChange={(e) => setEmailSignUp(e.target.value)} />
-                </div>
-
-                <div>
-                    <label> Password: </label>
-                    <input type='password' value={passwordSignUp} onChange={(e) => setPasswordSignUp(e.target.value)} />
-                </div>
-
-                <div>
-                    <label> Confirm password: </label>
-                    <input type='password'  value={confirmPasswordSignUp} onChange={(e) => setConfirmPasswordSignUp(e.target.value)} />
-                </div>
-
-                <Button variant="contained" color="primary" type='submit' onClick={signUp}>
-                    Sign up
-                </Button>
-            </FormSignUp>
-            
+                    <Button variant="contained" color="primary" type='submit' onClick={signUp}>
+                        Sign up
+                    </Button>
+                </FormSignUp>
+         
         </Container>
     )
 }
@@ -118,6 +118,7 @@ const Container = styled.div`
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    /* justify-content: space-between; */
     padding: 50px 50px;
     
     @media(min-width: 1000px) {

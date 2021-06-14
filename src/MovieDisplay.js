@@ -49,15 +49,16 @@ const MovieDisplay = ({ movie }) => {
 
     const alertStyle = {
         width: '100%',
-        fontSize: '16px'
+        fontSize: '16px' 
+
     }
 
     return (
         <>
             
-            <Snackbar style={{width: '400px'}} open={open} autoHideDuration={3000} onClose={handleClose}>
+            <Snackbar style={{width: '300px'}} open={open} autoHideDuration={3000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="error" style={alertStyle} >
-                    Already added to your Watchlist
+                    Already added to Watchlist
                 </Alert>
             </Snackbar>
             
