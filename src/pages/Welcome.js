@@ -52,6 +52,8 @@ const Welcome = () => {
     };
 
     return (
+        <>
+        <BackgoungBlur />
         <Container >
                 <FormLogin>
                     <div>
@@ -103,19 +105,33 @@ const Welcome = () => {
                 </FormSignUp>
          
         </Container>
+        </>
     )
 }
 
 export default Welcome
 
+const BackgoungBlur = styled.div`
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+    background-color: black;
+    opacity: 0.5;
+    min-height: 100%;
+    height: 100vh;
+`;
 
 const Container = styled.div`
-    background-image: url('https://cdn.hipwallpaper.com/i/98/21/dUyCkp.jpg');
+    background-image: url('https://i.redd.it/4fxxbm4opjd31.jpg');
+    img {
+        opacity: 0.2;
+    }
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 100vh;
-    height: 100%;
+    /* min-height: 100vh; */
+    height: 100vh;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
@@ -127,10 +143,13 @@ const Container = styled.div`
 `;
 
 const FormLogin = styled.form`
+    z-index: 2;
+    background-color: rgb(0,0,0, 0.9);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     width: 300px;
-    padding: 20px;
+    padding: 40px;
     
     @media(min-width: 1000px) {
         width: 400px;
@@ -168,5 +187,7 @@ const SignUpInstruction = styled.div`
     align-self: center;
 `;
 
-const FormSignUp = styled(FormLogin)``;
+const FormSignUp = styled(FormLogin)`
+    margin-top: -60px;
+`;
 
